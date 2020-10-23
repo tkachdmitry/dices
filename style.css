@@ -1,0 +1,89 @@
+/*remove arrows from input*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+
+.wrapper {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
+
+.big-title {
+    text-transform: uppercase;
+}
+
+.forms {
+    display: flex;
+    flex-direction: row;
+}
+
+.num:first-child {
+    margin: 0 30px 0 0;
+}
+
+label {
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+#dices-num,
+#edges-num {
+    margin-top: 12px;
+    width: 180px;
+}
+
+h4 {
+    text-transform: uppercase;
+}
+
+.btn {
+    width: 120px;
+    height: 40px;
+    padding: 0;
+    border: 2px solid black;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+}
+.output {
+    margin-top: 30px;
+    width: 420px;
+}
+
+.each-result {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.result-list {
+    border: 3px solid black;
+}
+
+.list-of-edges,
+.sum-output,
+.symbol {
+    width: 30px;
+    height: 30px;
+    max-height: 30px;
+    padding: 6px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: black;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    margin: 2px;
+
+    display: inline-block;
+    vertical-align: top;
+}
+
+.sum-output {
+     color: red;
+ }
