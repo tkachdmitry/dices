@@ -13,14 +13,15 @@ function rollDices() {
 //create wrapper-div eachResult
     const eachResult = document.createElement('div');
     eachResult.classList.add('each-result');
-    const d = resultDiv.appendChild(eachResult);
+    resultDiv.appendChild(eachResult);
     console.log('eachResult: ' + eachResult);
 
 //function that create input div
-    function createSymbol(symbolName, styleName) {
+    function createSymbol(symbolName, styleSymbol, styleName) {
         const symbol = document.createElement('div');
+        symbol.classList.add(styleSymbol);
         symbol.classList.add(styleName);
-        const z = eachResult.appendChild(symbol);
+        eachResult.appendChild(symbol);
         symbol.textContent = symbolName;
     }
 
@@ -32,7 +33,7 @@ function rollDices() {
 
 //function for checking validity isInteger
     function isInteger (num) {
-       return (num % 1 === 0) ? false : true;
+       return (num % 1 !== 0);
     }
 
     console.log('dicesNum: ' + dicesNum);
@@ -40,7 +41,7 @@ function rollDices() {
 
 //check the validity of the input
     if (dicesNum <=0 || isNaN(dicesNum) || edgesNum <= 0 || isInteger(dicesNum)) {
-        createSymbol(resultWrong, 'result');
+        createSymbol(resultWrong, 'symbol','result');
         clearInput();
         console.log('Wrong number');
     } else {
@@ -95,31 +96,31 @@ function rollDices() {
         console.log('result-dnd: ' + result);
     }
 
-    const createResultOutput = (value) => {
+    const createResultOutput = () => {
 //create div for num of dices
-        createSymbol(dicesNum, "dice");
+        createSymbol(dicesNum, 'symbol',"dice");
 
 //create div for letter d
-        createSymbol('d', 'special-symbol');
+        createSymbol('d', 'symbol', 'special-symbol');
 
 //create div for num of edges
-        createSymbol(edgesNum, 'dice');
+        createSymbol(edgesNum, 'symbol','dice');
 
 //create div for symbol ':'
-        createSymbol(':', 'special-symbol');
+        createSymbol(':', 'symbol','special-symbol');
 
 //create divs for every element of arr
         for (let i = 0; i < arrEdges.length; i++) {
-            createSymbol(arrEdges[i], 'symbol')
+            createSymbol(arrEdges[i], 'symbol','symbol')
         }
 
 //create div for symbol '='
-        createSymbol('=', 'special-symbol')
+        createSymbol('=', 'symbol','special-symbol')
 
 //create div for result output
-        createSymbol(result, 'result');
+        createSymbol(result, 'symbol','result');
     }
-        createResultOutput(result);
+        createResultOutput();
         clearInput();
         console.log('final result: ' + result);
     }

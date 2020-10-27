@@ -36,9 +36,6 @@ label {
     margin-top: 12px;
     width: 180px;
     outline: none;
-    /*-webkit-box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);*/
-    /*-moz-box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);*/
-    /*box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);*/
 }
 
 h4 {
@@ -54,9 +51,9 @@ h4 {
     color: inherit;
     background-color: transparent;
     cursor: pointer;
-    -webkit-box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 1px 2px 5px 0 rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 2px 5px 0 rgba(0,0,0,0.75);
+    box-shadow: 1px 2px 5px 0 rgba(0,0,0,0.75);
 }
 .output {
     margin-top: 30px;
@@ -69,12 +66,6 @@ h4 {
     justify-content: center;
 }
 
-.result-list {
-    border: 3px solid black;
-}
-
-.list-of-edges,
-.sum-output,
 .symbol {
     min-width: 30px;
     height: 30px;
@@ -87,72 +78,25 @@ h4 {
     color: white;
     text-align: center;
     margin: 2px;
-    -webkit-box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 1px 2px 5px 0 rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 2px 5px 0 rgba(0,0,0,0.75);
+    box-shadow: 1px 2px 5px 0 rgba(0,0,0,0.75);
 
     display: inline-block;
     vertical-align: top;
 }
 
 .dice {
-    min-width: 30px;
-    height: 30px;
-    max-height: 30px;
-    padding: 6px;
-    border: 1px solid black;
-    border-radius: 10px;
     background-color: brown;
-    font-weight: 700;
-    color: white;
-    text-align: center;
-    margin: 2px;
-    -webkit-box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
-
-    display: inline-block;
-    vertical-align: top;
 }
 
 .result {
-    min-width: 30px;
-    height: 30px;
-    max-height: 30px;
-    padding: 6px;
-    border: 1px solid black;
-    border-radius: 10px;
     background-color: red;
-    font-weight: 700;
-    color: white;
-    text-align: center;
-    margin: 2px;
-    -webkit-box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
-
-    display: inline-block;
-    vertical-align: top;
 }
 
 .special-symbol {
-    min-width: 30px;
-    height: 30px;
-    max-height: 30px;
-    padding: 6px;
-    border: 1px solid black;
-    border-radius: 10px;
     background-color: lightslategray;
-    font-weight: 700;
-    color: white;
-    text-align: center;
-    margin: 2px;
-    -webkit-box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
 
-    display: inline-block;
-    vertical-align: top;
 }
 
 
