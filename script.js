@@ -1,29 +1,73 @@
 'use strict'
 const btn = document.querySelector('.btn');
 const resultDiv = document.querySelector('.result-div');
-let sumDices = 0;
 
 function rollDices() {
 
     const min = 0;
     let dicesNum = +document.querySelector('#dices-num').value;
-    let edgesNum = +document.querySelector('#edges-num').value;
+    let edgesNum = document.querySelector('#edges-num').value;
     let result = 0;
-    let resultSum = 0;
-    let dice = 0;
     let arr = [];
 
 //check the validity of the input
-    if (dicesNum <=0 || edgesNum <= 0 || dicesNum == NaN || edgesNum == NaN) {
-        result = "Don't play with me";
-    }
+//     if (dicesNum <= 0 || isNaN(dicesNum) || edgesNum != 'f' ||
+//         edgesNum != 'fate' || edgesNum != 'fatecore' ||
+//         edgesNum != 'F' || edgesNum != 'FATE' || edgesNum != 'FATECORE' ||
+//         edgesNum != 'Ф' || edgesNum != 'ФЕЙТ' || edgesNum != 'ФЕЙТКОР'
+//         && isNaN(edgesNum)) {
+//         result = "Don't play with me";
+//     }
 
-    for (let i = 0; i < dicesNum; i++) {
-        arr.push(Math.floor(Math.random() * (edgesNum - min) + min));
-    }
-//calculating the resultSum of rolled edges
-    for (let i = 0; i < arr.length; i++) {
-        result += arr[i];
+//FOR FateCore
+    console.log('edgesNum: ' + edgesNum);
+    if (edgesNum == 'f' || edgesNum == 'fate' || edgesNum == 'fatecore' ||
+        edgesNum == 'F' || edgesNum == 'FATE' || edgesNum == 'FATECORE' ||
+        edgesNum == 'Ф' || edgesNum == 'ФЕЙТ' || edgesNum == 'ФЕЙТКОР') {
+        console.log('Включился режим FateCore');
+
+//create arr of edges for FateCore
+        for (let i = 0; i < dicesNum; i++) {
+            arr.push(Math.floor(Math.random() * (5 - min +1) + min));
+            console.log('are[i]' + arr[i]);
+        }
+        console.log('arr-fate before turning into -1, 0, 1: ' + arr);
+
+        for (let y = 0; y < arr.length; y++) {
+
+            if (arr[y] == 0 || arr[y] == 1) {
+                arr[y] = -1;
+                console.log('edge -1');
+            } else if (arr[y] == 2 || arr[y] == 3) {
+                arr[y] = 0;
+                console.log('edge 0');
+            } else if (arr[y] == 4 || arr[y] == 5) {
+                arr[y] = 1;
+                console.log('edge 1');
+            } else {
+                console.log('Something goes wrong');
+            }
+        }
+        console.log('arr-fate after turning into -1, 0, 1: ' + arr);
+
+        for (let z = 0; z < arr.length; z++) {
+            result += arr[z];
+        }
+        console.log('result fate: ' + result);
+    } else {
+//FOR DND
+//create arr of DND edges
+
+        for (let i = 0; i < dicesNum; i++) {
+            arr.push(Math.floor(Math.random() * (edgesNum - min +1) + min));
+        }
+        console.log('arr-dnd: ' + arr);
+
+//calculate the resultSum of rolled DND edges
+        for (let i = 0; i < arr.length; i++) {
+            result += arr[i];
+        }
+        console.log('result-dnd: ' + result);
     }
 
     const createResultOutput = (value) => {
@@ -31,42 +75,36 @@ function rollDices() {
         const eachResult = document.createElement('div');
         eachResult.classList.add('each-result');
         const d = resultDiv.appendChild(eachResult);
+        console.log('eachResult: ' + eachResult);
 
 //create div for num of dices
-        const outputNumOfDices = document.createElement('div');
-        outputNumOfDices.classList.add('symbol');
-        const e = eachResult.appendChild(outputNumOfDices);
-        outputNumOfDices.textContent = dicesNum;
+        createSymbol(dicesNum);
+
 //create div for letter d
-        const symbolD = document.createElement('div');
-        symbolD.classList.add('symbol');
-        const f = eachResult.appendChild(symbolD);
-        symbolD.textContent = 'd';
+        createSymbol('d');
+
 //create div for num of edges
-        const outputNumOfEdges = document.createElement('div');
-        outputNumOfEdges.classList.add('symbol');
-        const g = eachResult.appendChild(outputNumOfEdges);
-        outputNumOfEdges.textContent = edgesNum;
+        createSymbol(edgesNum);
 
 //create div list-of-edges for every element of arr
         for (let i = 0; i < arr.length; i++) {
-            const listOfEdges = document.createElement('div');
-            listOfEdges.classList.add('list-of-edges');
-            const a = listOfEdges.textContent = i;
-            const b = eachResult.appendChild(listOfEdges);
+            createSymbol(arr[i])
         }
 
-//create div for symbol '='
-        const symbolEqual = document.createElement('div');
-        symbolEqual.classList.add('symbol');
-        const i = eachResult.appendChild(symbolEqual);
-        symbolEqual.textContent = '=';
 
-//create div sumOptput for sum of roll
-        const sumOutput = document.createElement('div');
-        sumOutput.classList.add('sum-output');
-        const c = eachResult.appendChild(sumOutput);
-        sumOutput.textContent = value;
+//create div for symbol '='
+        createSymbol('=')
+
+//create div for result output
+        createSymbol(result);
+
+//function that create input div
+        function createSymbol(v) {
+            const symbol = document.createElement('div');
+            symbol.classList.add('symbol');
+            const z = eachResult.appendChild(symbol);
+            symbol.textContent = v;
+        }
     }
     createResultOutput(result);
 
@@ -74,7 +112,7 @@ function rollDices() {
     document.querySelector('#dices-num').value = '';
     document.querySelector('#edges-num').value = '';
 
-    console.log('result: ' + result);
+    console.log('final result: ' + result);
 }
 
 btn.addEventListener('click', rollDices);
