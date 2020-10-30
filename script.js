@@ -1,14 +1,19 @@
 'use strict'
 const btn = document.querySelector('.btn');
-const resultDiv = document.querySelector('.result-div');
 
 function rollDices() {
-    const min = 0;
     const dicesNum = +document.querySelector('#dices-num').value;
     const edgesNum = document.querySelector('#edges-num').value;
+    const resultDiv = document.querySelector('.result-div');
+    const min = 0;
     let result = 0;
     let resultWrong = 'Error: Enter positive integer num';
     let arrEdges = [];
+
+//function validate FateCore
+    function validateFate(edgesNum) {
+        return ['f', 'fate', 'farecore', 'ф', 'фейт', 'фейткор'].includes(edgesNum.toLowerCase());
+    }
 
 //create wrapper-div eachResult
     const eachResult = document.createElement('div');
@@ -45,11 +50,10 @@ function rollDices() {
         clearInput();
         console.log('Wrong number');
     } else {
+
 //FOR FateCore
         console.log('edgesNum: ' + edgesNum);
-        if (edgesNum === 'f' || edgesNum === 'fate' || edgesNum === 'fatecore' ||
-            edgesNum === 'F' || edgesNum === 'FATE' || edgesNum === 'FATECORE' ||
-            edgesNum === 'Ф' || edgesNum === 'ФЕЙТ' || edgesNum === 'ФЕЙТКОР')
+        if (validateFate(edgesNum))
         {
             console.log('Start FateCore-mode');
 
@@ -64,13 +68,10 @@ function rollDices() {
 
             if (arrEdges[y] === 0 || arrEdges[y] === 1) {
                 arrEdges[y] = -1;
-                console.log('edge -1');
             } else if (arrEdges[y] === 2 || arrEdges[y] === 3) {
                 arrEdges[y] = 0;
-                console.log('edge 0');
             } else if (arrEdges[y] === 4 || arrEdges[y] === 5) {
                 arrEdges[y] = 1;
-                console.log('edge 1');
             } else {
                 console.log('Something goes wrong');
             }
@@ -82,6 +83,7 @@ function rollDices() {
         }
         console.log('result fate: ' + result);
     } else {
+
 //FOR DND
 //create arr of DND edges
         for (let i = 0; i < dicesNum; i++) {
