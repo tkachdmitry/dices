@@ -19,12 +19,11 @@ function rollDices() {
     const eachResult = document.createElement('div');
     eachResult.classList.add('each-result');
     resultDiv.appendChild(eachResult);
-    console.log('eachResult: ' + eachResult);
 
 //function that create input div
-    function createSymbol(symbolName, styleSymbol, styleName) {
+    function createSymbol(symbolName, styleName) {
         const symbol = document.createElement('div');
-        symbol.classList.add(styleSymbol);
+        symbol.classList.add('symbol');
         symbol.classList.add(styleName);
         eachResult.appendChild(symbol);
         symbol.textContent = symbolName;
@@ -41,18 +40,21 @@ function rollDices() {
        return (num % 1 !== 0);
     }
 
-    console.log('dicesNum: ' + dicesNum);
-    console.log('edgesNum: ' + edgesNum);
-
 //check the validity of the input
     if (dicesNum <=0 || isNaN(dicesNum) || edgesNum <= 0 || isInteger(dicesNum)) {
         createSymbol(resultWrong, 'symbol','result');
         clearInput();
         console.log('Wrong number');
+    } else if (!validateFate(edgesNum) && isInteger(edgesNum)) {
+        createSymbol(resultWrong, 'symbol','result');
+        clearInput();
+        console.log("EdgesNum isn't integer");
+    } else if (!validateFate(edgesNum) && isNaN(edgesNum)) {
+        createSymbol(resultWrong, 'symbol','result');
+        clearInput();
+        console.log('EdgesNum is NaN');
     } else {
-
 //FOR FateCore
-        console.log('edgesNum: ' + edgesNum);
         if (validateFate(edgesNum))
         {
             console.log('Start FateCore-mode');
@@ -83,7 +85,6 @@ function rollDices() {
         }
         console.log('result fate: ' + result);
     } else {
-
 //FOR DND
 //create arr of DND edges
         for (let i = 0; i < dicesNum; i++) {
@@ -99,29 +100,17 @@ function rollDices() {
     }
 
     const createResultOutput = () => {
-//create div for num of dices
-        createSymbol(dicesNum, 'symbol',"dice");
-
-//create div for letter d
-        createSymbol('d', 'symbol', 'special-symbol');
-
-//create div for num of edges
-        createSymbol(edgesNum, 'symbol','dice');
-
-//create div for symbol ':'
-        createSymbol(':', 'symbol','special-symbol');
-
-//create divs for every element of arr
+        createSymbol(dicesNum, "dice");
+        createSymbol('d', 'special-symbol');
+        createSymbol(edgesNum, 'dice');
+        createSymbol(':', 'special-symbol');
         for (let i = 0; i < arrEdges.length; i++) {
-            createSymbol(arrEdges[i], 'symbol','symbol')
+            createSymbol(arrEdges[i], 'symbol');
         }
-
-//create div for symbol '='
-        createSymbol('=', 'symbol','special-symbol')
-
-//create div for result output
-        createSymbol(result, 'symbol','result');
+        createSymbol('=', 'special-symbol')
+        createSymbol(result, 'result');
     }
+
         createResultOutput();
         clearInput();
         console.log('final result: ' + result);
