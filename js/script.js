@@ -10,9 +10,18 @@ function rollDices() {
     let resultWrong = 'Error: Enter positive integer num';
     let arrEdges = [];
 
+// function playAudio {
+    function playAudio () {
+        const audio = new Audio();
+        audio.preload = 'auto';
+        audio.src = './media/sounds/dice_roll_sound.mp3';
+        audio.play();
+    }
+
+
 //function validate FateCore
     function validateFate(edgesNum) {
-        return ['f', 'fate', 'farecore', 'ф', 'фейт', 'фейткор'].includes(edgesNum.toLowerCase());
+        return ['f', 'fate', 'fatecore', 'ф', 'фейт', 'фейткор'].includes(edgesNum.toLowerCase());
     }
 
 //create wrapper-div eachResult
@@ -110,7 +119,7 @@ function rollDices() {
         createSymbol('=', 'special-symbol')
         createSymbol(result, 'result');
     }
-
+        playAudio();
         createResultOutput();
         clearInput();
         console.log('final result: ' + result);
